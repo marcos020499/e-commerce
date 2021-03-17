@@ -1,0 +1,105 @@
+.divFooter {
+    position: relative;
+    top: 95px;
+    width: 100%;
+}
+
+.title6 {
+    padding-top: 10px;
+    position: relative;
+    margin-left: 20px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 19px;
+    color: white;
+}
+.text6 {
+    margin-left: 20px;
+    color: gray;
+    font-size: 15px;
+    position: relative;
+    font-family: 'Inconsolata', monospace;
+}
+.text7 {
+    margin-left: 20px;
+    color: #9d0898;
+    font-size: 18px;
+    position: relative;
+    font-family: 'Inconsolata', monospace;
+}
+.text8 {
+    margin-left: 20px;
+    color: #9d0898;
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+    font-family: 'Inconsolata', monospace;
+    padding: 25px;
+}
+.input {
+    margin-left: 20px;
+    font-size: 15px;
+    padding-right: calc(100% - 230px);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-color: black;
+    border: 1px solid gray;
+    color: aliceblue;
+}
+.icon4 {
+    position: relative;
+    background-color: aliceblue;
+    width: 15px;
+    height: 25px;
+    top: 10px;
+    right: -5%;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+.icon4a {
+    position: relative;
+    color: aliceblue;
+}
+.iconsFooter a{
+    position: relative;
+    color: blueviolet;
+    padding: 4%;
+    margin: 4%;
+}
+
+@media screen and (min-width: 901px){
+    .box7{
+        display: flex;
+        align-items: flex-start;
+    }
+    .child1{
+        width: 24%;
+        position: relative;
+        padding-top: 0%;
+        top: 5%;
+        display: inline-block;
+    }
+    .child2{
+        position: relative;
+        padding-top: 0%;
+        width: 24%;
+        display: inline-block;
+    }
+    .child3{
+        position: relative;
+        top: 30%;
+        width: 24%;
+        display: inline-block;
+    }
+    .child4{
+        position: relative;
+        width: 24%;
+        top: 0%;
+        display: inline-block;
+    }
+    .input{
+        padding-right: calc(100%-100px);
+    }
+}
