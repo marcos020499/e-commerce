@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.scss';
 import 'font-awesome/css/font-awesome.min.css';
 import { toast } from 'react-toastify';
-import { Link, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import {AddCart} from '../../actions'
 import {connect} from 'react-redux';
 import computer from '../../Images/computer.jpg'
@@ -10,16 +10,9 @@ import phone from '../../Images/phones.jpg'
 import tv from '../../Images/tv samsung.png'
 toast.configure();
 class index extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-    }
 
-  }
 
   render() {
-    const { data} = this.state;
     return (
 
       <div className='categories'>   

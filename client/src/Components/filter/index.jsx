@@ -26,7 +26,6 @@ class index extends Component {
     const name = this.props.match.params.name;
     axios.get(`http://localhost:8080/api/productos/filtrar1/${name}`)
       .then(res => {
-        const {_id, name, available_quantity, price, description } = res.data
         this.setState({
           data: res.data
         });

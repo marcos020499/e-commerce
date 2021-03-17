@@ -1,16 +1,11 @@
 import React, { Component } from 'react'
 import './style.scss';
 import 'font-awesome/css/font-awesome.min.css';
-import { toast } from 'react-toastify';
 import { withRouter, Link } from 'react-router-dom';
 
 import {actFetchProductsRequest,AddCart} from '../../actions'
 import {connect} from 'react-redux';
 class index extends Component {
-    constructor(props) {
-        super(props)
-       
-    }
     componentDidMount(){
         this.props.actFetchProductsRequest();
     }

@@ -40,7 +40,7 @@ class index extends Component {
   }
 
   render() {
-    const { name, available_quantity, price, description, isEditPage, } = this.state;
+    const { name, available_quantity, price, description} = this.state;
     return (
 
       <>

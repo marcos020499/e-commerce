@@ -9,14 +9,6 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import wallpaper from '../../Images/wallpaper.jpg'
 import {setCurrentUser} from '../../actions'
-import SideNav, {
-  Toggle,
-  Nav,
-  NavItem,
-  NavIcon,
-  NavText
-} from "@trendmicro/react-sidenav";
-import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 toast.configure();
 class index extends Component {
   constructor(props) {
