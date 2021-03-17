@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
+import './style.scss';
 import {IncreaseQuantity,DecreaseQuantity,DeleteCart} from '../../actions';
 
 function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
@@ -19,8 +20,7 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
             <table className="table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Name</th>
+                        <th>Names</th>
                         <th>Image</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -33,7 +33,7 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
                         return(
                             <tr key={key}>    
                             <td><span className="badge badge-danger" onClick={()=>DeleteCart(key)}>X</span></td>
-                            <td style={{color:'blue'}}>ss{item.name}</td>
+                            <td style={{color:'blue'}}>{item.name}</td>
                             <td><img src={'http://lorempixel.com/640/480/sports'} style={{width:'200px',height:'100px'}}/></td>
                             <td>{item.price} $</td>
                             <td>

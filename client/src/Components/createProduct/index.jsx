@@ -17,6 +17,7 @@ class index extends Component {
       available_quantity: '',
       price: '',
       description: '',
+      categories: '',
       isEditPage: false
     }
 
@@ -46,8 +47,8 @@ class index extends Component {
   fetchData=event =>{
     event.preventDefault();
     const id = this.props.match.params.id;
-    const { name, available_quantity, price, description, isEditPage,} = this.state
-      axios.post(`http://localhost:8080/api/productos${isEditPage ? `/editar/${id}` : '/crear'}`, { name, available_quantity, price, description, isEditPage,}) 
+    const { name, available_quantity, price, description, isEditPage, categories} = this.state
+      axios.post(`http://localhost:8080/api/productos${isEditPage ? `/editar/${id}` : '/crear'}`, { name, available_quantity, price, description, isEditPage, categories}) 
       .then(() => {
           toast.success(`producto ${isEditPage ? "editado" : "creado"}`,{
             position: toast.POSITION.TOP_CENTER}
@@ -67,7 +68,7 @@ class index extends Component {
     });
   }
   render() {
-    const { name, available_quantity, price, description, isEditPage, } = this.state;
+    const { name, available_quantity, price, description, isEditPage, categories } = this.state;
     return (
 
       <>
@@ -79,6 +80,7 @@ class index extends Component {
             <input type="text"placeholder='Ingresa la cantidad' value={available_quantity} name='available_quantity' onChange={this.onChange} required/>
             <input type="text"placeholder='Ingresa el precio ' value={price} name='price' onChange={this.onChange} required/>
             <input type="text"placeholder='Ingresa una descripcion' value={description} name='description' onChange={this.onChange}/>
+            <input type="text"placeholder='Ingresa una categoria' value={categories} name='categories' onChange={this.onChange}/>
             <div className='admin'>
               <h3>Is admin?</h3>
               <input className='checkbox1' type="checkbox"/>

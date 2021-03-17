@@ -4,3 +4,4 @@ export * from './borrar';
 export * from './editar';
 export * from './filtrar';
 export * from './filtrar1';
+export * from './filtrar2';

@@ -19,6 +19,9 @@ const productSchema = mongoose.Schema({
     description: {
         type: String,
     },
+    categories: {
+        type: String,
+    },
 }, { timestamps: true })
 
 

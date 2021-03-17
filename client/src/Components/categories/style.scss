@@ -1,0 +1,33 @@
+.productContainer1{
+    margin: 1%;
+    width: 31%;
+    height: 20%;
+    display: inline-block;
+    border: 1px solid black;
+}
+.productContainer1 img{
+    display: inline-flex;
+    align-content: flex-end;
+    max-width: 210px;
+    max-height: 150px;
+    min-width: 209px;
+    min-height: 149px;
+    width: 99%;
+}
+.productContainer1 h4{
+    text-align: center;
+}
+.productContainer1:hover{
+    color: brown;
+}
+@media screen and (max-width: 768px){
+    .productContainer1 img{
+        display: inline-flex;
+        align-content: flex-end;
+        max-width: 125px;
+        max-height: 110px;
+        min-width: 124px;
+        min-height: 109px;
+        width: 99%;
+    }
+}

@@ -18,7 +18,7 @@ class index extends Component {
     render() {
         const {_products} = this.props._products;
            return (
-                <div className="row" style={{marginTop:'10px'}}>
+                <div className="row">
                 {
                     _products.map((item,index)=>(
                     <div key={index} className="containerProduct" >

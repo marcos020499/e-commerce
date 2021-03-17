@@ -9,6 +9,14 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import wallpaper from '../../Images/wallpaper.jpg'
 import {setCurrentUser} from '../../actions'
+import SideNav, {
+  Toggle,
+  Nav,
+  NavItem,
+  NavIcon,
+  NavText
+} from "@trendmicro/react-sidenav";
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 toast.configure();
 class index extends Component {
   constructor(props) {
@@ -148,7 +156,7 @@ class index extends Component {
           > 
               <h2>MENU</h2>
               <a href='/' className='fa fa-home' style={{padding: '1%'}}> Home</a>
-              <a href='/' className='fa fa-filter' style={{padding: '1%'}}> Categories</a>
+              <a href='/categories' className='fa fa-filter' style={{padding: '1%'}}> Categories</a>
               <a href='/cart' className='fa fa-shopping-basket' style={{padding: '1%'}}> Shooping Cart</a>
               <button className='fa fa-user' onClick={this.openModal2} style={{padding: '1%', fontSize:'1.8vw'}}> Sign In</button>
           </Modal>
@@ -203,7 +211,7 @@ class index extends Component {
               </Modal>
             </form>
             <div>
-              <h2 className='backgroundText'>the best computer shop</h2>
+              <h2 className='backgroundText'>the best technology shop</h2>
               <img className='background' src={wallpaper} alt=""/>
             </div>
       </div>

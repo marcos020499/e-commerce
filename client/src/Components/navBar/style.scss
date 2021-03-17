@@ -13,7 +13,7 @@ h1{
     display: flex;
     position: relative;
     width: 100%;
-    height: 5vw;
+    height: 4vw;
     margin-bottom: 0%;
     padding-bottom: 0%;
     background: linear-gradient(white, gray)
@@ -157,16 +157,55 @@ a.fa-search:hover{
     margin: 0%;
     padding: 0%;
     width: 100%;
-    height: 40vw;
+    height: 36vw;
     opacity: 92%;
 }
 .backgroundText{
     z-index: 4;
     font-size: 5vw;
-    right: 23%;
+    right: 20%;
     margin-top: 4%;
     opacity: 70%;
     color: aliceblue;
     text-align: center;
     position: absolute;
+}
+@media screen and (max-width: 768px){
+    .fa-user{
+        top: 45%;
+        color: #9d0898;
+        margin: -4% 0% 0% 40%;
+        position: relative;
+        font-size: 5.5vw;
+    }
+    .fa-bars{
+        position: relative;
+        font-size: 5vw;
+        top: -80%;
+        right: -20%;
+        margin-left: 30%;
+    }
+    .fa-search{
+        margin: -1% 0% 0% 0%;
+        right: -40%;
+        color: #9d0898;
+        position: relative;
+        font-size: 5vw;
+    }
+    .fa-shopping-cart{
+        margin: -1% 0% 0% 0%;
+        right: -45%;
+        color: #9d0898;
+        position: relative;
+        font-size: 5vw;
+    }
+    .navBox{
+        height: 6vw;
+    }
+    .navBox h1{
+        position: relative;
+        right: -5%;
+        margin-top: 0%;
+        font-size: 5vw;
+    }
 }
