@@ -21,3 +21,18 @@
     position: relative;
     right: -5%;
 }
+@media screen and (max-width: 768px){
+    .productCreate h3{
+        font-size: 5vw;
+    }
+    .productCreate{
+        font-size: 4vw;
+    }
+    .productCreate input{
+        font-size: 4vw;
+        padding-right: 35%;
+    }
+    .productCreate  button{
+        font-size: 4vw;
+    }
+}

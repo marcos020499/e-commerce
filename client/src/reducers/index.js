@@ -19,11 +19,12 @@ function todoProduct(state = initProduct,action){
                     ...state
                 }
         case ADD_CART:
-            if(state.numberCart==0){
+            if(state.numberCart===0){
                 let cart = {
                     id:action.payload._id,
                     quantity:1,
                     name:action.payload.name,
+                    images:action.payload.images,
                     price:action.payload.price
                 } 
                 state.Carts.push(cart); 
@@ -31,7 +32,7 @@ function todoProduct(state = initProduct,action){
             else{
                 let check = false;
                 state.Carts.map((item,key)=>{
-                    if(item._id==action.payload._id){
+                    if(item._id===action.payload._id){
                         state.Carts[key].quantity++;
                         check=true;
                     }
@@ -41,6 +42,7 @@ function todoProduct(state = initProduct,action){
                         id:action.payload._id,
                         quantity:1,
                         name:action.payload.name,
+                        images:action.payload.images,
                         price:action.payload.price
                     }
                     state.Carts.push(_cart);
@@ -73,7 +75,7 @@ function todoProduct(state = initProduct,action){
                     ...state,
                     numberCart:state.numberCart - quantity_,
                     Carts:state.Carts.filter(item=>{
-                        return item.id!=state.Carts[action.payload].id
+                        return item.id!==state.Carts[action.payload].id
                     })
                    
                 }

@@ -1,6 +1,18 @@
+.imgCart{
+    width: 200px;
+    height: 130px;
+}
 
 @media screen and (max-width: 768px){
     .row{
-        font-size: 1vw;
+        font-size: 3.5vw;
+    }
+    .imgCart{
+        width: 40px;
+        height: 25px;
+    }
+    .btn-primary{
+        font-size: 6vw;
+        padding: 5%;
     }
 }

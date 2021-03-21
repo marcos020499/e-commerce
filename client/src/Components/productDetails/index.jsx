@@ -24,10 +24,11 @@ class index extends Component {
     const id = this.props.match.params.id;
     axios.get(`http://localhost:8080/api/productos/filtrar/${id}`)
       .then(res => {
-        const {_id, name, available_quantity, price, description } = res.data
+        const {_id, name, images, available_quantity, price, description } = res.data
         this.setState({
           _id,
           name,
+          images, 
           available_quantity,
           price,
           description,
@@ -40,7 +41,7 @@ class index extends Component {
   }
 
   render() {
-    const { name, available_quantity, price, description} = this.state;
+    const { name, images, available_quantity, price, description} = this.state;
     return (
 
       <>
@@ -48,7 +49,7 @@ class index extends Component {
         <div className='productDetails'>
           <Link to={'/'} className="fa fa-reply" style={{position: 'relative', right: '-85%', top: '-3%'}}></Link>
           <h3>Nombre: {name}</h3>
-          <img  src={`http://localhost:8080/uploads/${name}.png`} style={{position: 'relative', right: '-28%', top: '10%'}}/>
+          <img  src={`http://localhost:8080/${images}`} style={{position: 'relative', right: '-28%', top: '10%'}}/>
           <h3>Available_quantity: {available_quantity}</h3>
           <h3>Price: {price}</h3>
           <p>Description: {description}</p>

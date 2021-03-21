@@ -91,22 +91,6 @@ class index extends Component {
       })
     .catch(err => toast.warn(`No se pudo crear el usuario`))
   }
-  componentDidMount(){
-    axios.get(`http://localhost:8080/api/productos/filtrar1/Macbook`)
-      .then(res => {
-        const {name, available_quantity, price, description } = res.data
-        this.setState({
-          name,
-          available_quantity,
-          price,
-          description,
-        });
-
-      })
-      .catch(err => {
-        toast.warn("No se puede mostrar la información - " + err)
-      })
-  }
   onChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -150,7 +134,7 @@ class index extends Component {
               <a href='/' className='fa fa-home' style={{padding: '1%'}}> Home</a>
               <a href='/categories' className='fa fa-filter' style={{padding: '1%'}}> Categories</a>
               <a href='/cart' className='fa fa-shopping-basket' style={{padding: '1%'}}> Shooping Cart</a>
-              <button className='fa fa-user' onClick={this.openModal2} style={{padding: '1%', fontSize:'1.8vw'}}> Sign In</button>
+              <button className='fa fa-user' onClick={this.openModal2}> Sign In</button>
           </Modal>
         </div>
         <form onSubmit={this.onSubmit}>
@@ -159,14 +143,14 @@ class index extends Component {
               closeModal={this.closeModal2}
               shouldShowModal={this.state.shouldShowModal2}
               >
-                <div className='Login' style={{color: 'purple'}}>
+                <div className='login' style={{color: 'purple'}}>
                   <h3>LOGIN</h3>
                   <div className='inputLogin'>
                     <input type="text"placeholder='Ingresa tu usuario ' value={user} name='user' onChange={this.onChange} required/>
                     <input type="password"placeholder='Ingresa tu contraseña' value={password} name='password' onChange={this.onChange} required/>
                     <h3>No tienes una cuenta? <button className='newUser' onClick={this.openModal1}>Registrate</button></h3>
                     <button type='submit'>Iniciar sesion</button>
-                    <a className='LoginReference' href='/'>Olvidaste tu contraseña</a>
+                    <Link to="/phoneInput/mm" className="LoginReference">Olvidaste tu contraseña </Link>
                   </div>
                 </div>
               </Modal>

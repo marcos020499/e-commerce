@@ -19,7 +19,8 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Names</th>
+                        <th></th>
+                        <th>Name</th>
                         <th>Image</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -32,8 +33,8 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
                         return(
                             <tr key={key}>    
                             <td><span className="badge badge-danger" onClick={()=>DeleteCart(key)}>X</span></td>
-                            <td style={{color:'blue'}}>{item.name}</td>
-                            <td><img src={'http://lorempixel.com/640/480/sports'} style={{width:'200px',height:'100px'}}/></td>
+                            <td>{item.name}</td>
+                            <td><img className='imgCart' src={'http://localhost:8080/'+item.images}/></td>
                             <td>{item.price} $</td>
                             <td>
                                     <span className="btn-primary" style={{margin:'2px'}} onClick={()=>DecreaseQuantity(key)}>-</span>

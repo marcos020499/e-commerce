@@ -18,7 +18,7 @@ class index extends Component {
                     _products.map((item,index)=>(
                     <div key={index} className="containerProduct" >
                         <div className='imgProduct'>
-                            <img  src={`http://localhost:8080/uploads/${item.name}.png`}/>
+                            <img  src={`http://localhost:8080/${item.images}`}/>
                         </div>
                         <h4>name: {item.name}</h4>
                         <h5>available quantity: {item.available_quantity}</h5>

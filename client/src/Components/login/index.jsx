@@ -22,7 +22,7 @@ class index extends Component {
       axios.get('http://localhost:8080/api/productos/listar') 
       .then(response => {
         this.setState({
-          data: response.data
+          data: response.data.products
         })
       })
       .catch(err => console.log(err))
@@ -46,14 +46,15 @@ class index extends Component {
     //const { _session} = this.props._session;
     return (
       <div>
-        <Link to={'/products/create'}><button style={{marginTop: '2%', position: 'relative', right: '-70%', padding: '1%', fontSize:'1.6vw'}}>Crear Producto</button></Link>
+        <Link to={'/products/create'}><button className='buttonCreate'>Crear Producto</button></Link>
         <div style={{marginTop: '8%'}}>
-          {data.map((data) =>( 
-          <div key={data.id} className='containerProduct' style={{width: '30%', minHeight: '30%', margin: '1.3%', padding: '1.5%'}}>
+          {data.map((data, index) =>( 
+          <div key={data.id} className='containerProduct'>
             <h4>name: {data.name}</h4>
             <div className='imgProductLogin'>
-              <img  src={`http://localhost:8080/uploads/${data.name}.png`}/>
+              <img  src={`http://localhost:8080/${data.images}`}/>
             </div>
+            
             <h4>available_quantity: {data.available_quantity}</h4>
             <h4>price: {data.price}</h4>
             <Link to={'/products/editar/'+data._id} className="fa fa-edit" style={{position: 'relative', right: '-75%'}}></Link>

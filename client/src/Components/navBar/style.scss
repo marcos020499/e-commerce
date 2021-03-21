@@ -76,6 +76,9 @@ a.fa-search:hover{
     width: 30%;
     height: 30%;
 }
+.modalContainer button{
+    font-size: 1.8vw;
+}
 .Login{
     background-color: linear-gradient(blue, gray);
 }
@@ -157,7 +160,7 @@ a.fa-search:hover{
     margin: 0%;
     padding: 0%;
     width: 100%;
-    height: 36vw;
+    height: 32vw;
     opacity: 92%;
 }
 .backgroundText{
@@ -207,5 +210,26 @@ a.fa-search:hover{
         right: -5%;
         margin-top: 0%;
         font-size: 5vw;
+    }
+    .inputLogin input{
+        font-size: 4vw;
+    }
+    .inputLogin button{
+        font-size: 4vw;
+    }
+    .inputLogin a{
+        font-size: 4vw;
+    }
+    .inputRegister input{
+        font-size: 4vw;
+    }
+    .inputRegister button{
+        font-size: 4vw;
+    }
+    .Register h3{
+        font-size: 4vw;
+    }
+    .modalContainer button{
+        font-size: 4vw;
     }
 }

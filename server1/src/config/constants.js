@@ -1,4 +1,4 @@
 export const config = {
-    PORT: 8080,
-    DB_URI: 'mongodb://localhost:27017/comerce',
+    PORT: 5000,
+    DB_URI: 'mongodb://localhost:27017/comerce1',
   };

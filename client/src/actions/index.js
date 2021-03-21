@@ -12,7 +12,7 @@ export const actFetchProductsRequest = () => {
     return (dispatch) => {
         return callApi('', 'GET', null).then(res => {
           
-            dispatch(GetAllProduct(res.data));
+            dispatch(GetAllProduct(res.data.products));
         });
     }
 }

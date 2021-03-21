@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { Product } = require("../models/products");
 const multer = require('multer');
-import { crear , listar, borrar, editar, filtrar, filtrar1, filtrar2} from '../controllers/productos';
+const crypto = require("crypto");
+import { crear , borrar, editar, filtrar, filtrar1, filtrar2} from '../controllers/productos';
 router.post('/crear', crear);
-router.get('/listar', listar);
 router.delete('/listar/:id', borrar);
 router.post('/editar/:id', editar);
 router.get('/filtrar/:id', filtrar);
@@ -14,8 +14,18 @@ var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/')
     },
-    filename: (req, file, cb) => {
-        cb(null, `${file.originalname}`)
+    filename: function (req, file, cb) {
+        try {
+            crypto.pseudoRandomBytes(16, function (err, raw) {
+                if (err) return cb(err);
+                cb(
+                    null,
+                    raw.toString("hex")+Date.now()+file.originalname
+                );
+            });
+        } catch (error) {
+            console.log(error);
+        }
     },
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname)
@@ -45,8 +55,70 @@ router.post("/upload",  (req, res) => {
 });
 
 
+router.post("/crear", (req, res) => {
+
+    //save all the data we got from the client into the DB 
+    const product = new Product(req.body)
+    const product1 = product.toLowerCase();
+    product1.save((err) => {
+        if (err) return res.status(400).json({ success: false, err })
+        return res.status(200).json({ success: true })
+    })
+
+});
 
 
+
+router.get("/listar", (req, res) => {
+
+    let order = req.body.order ? req.body.order : "desc";
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let skip = parseInt(req.body.skip);
+
+    let findArgs = {};
+    let term = req.body.searchTerm;
+
+    for (let key in req.body.filters) {
+
+        if (req.body.filters[key].length > 0) {
+            if (key === "price") {
+                findArgs[key] = {
+                    $gte: req.body.filters[key][0],
+                    $lte: req.body.filters[key][1]
+                }
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
+
+    console.log(findArgs)
+
+    if (term) {
+        Product.find(findArgs)
+            .find({ $text: { $search: term } })
+            .populate("writer")
+            .sort([[sortBy, order]])
+            .skip(skip)
+            .limit(limit)
+            .exec((err, products) => {
+                if (err) return res.status(400).json({ success: false, err })
+                res.status(200).json({ success: true, products, postSize: products.length })
+            })
+    } else {
+        Product.find(findArgs)
+            .populate("writer")
+            .sort([[sortBy, order]])
+            .skip(skip)
+            .limit(limit)
+            .exec((err, products) => {
+                if (err) return res.status(400).json({ success: false, err })
+                res.status(200).json({ success: true, products, postSize: products.length })
+            })
+    }
+
+});
 
 
 //?id=${productId}&type=single
@@ -65,6 +137,7 @@ router.get("/products_by_id", (req, res) => {
         })
     }
 
+    console.log("productIds", productIds)
 
 
     //we need to find the product information that belong to product Id 

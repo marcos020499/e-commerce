@@ -12,7 +12,8 @@ import NavBar from './Components/navBar/index';
 import Footer from './Components/footer/index'
 import Store from './stores'
 import categories from './Pages/categories/categories';
-import phoneCategorie from './Pages/categories/filter';
+import categoriesFilter from './Pages/categories/filter';
+import phoneInput from './Components/phone/inputPhone';
 function App() {
   const [theme, setTheme] = useState('buttonTrue');
   const change =() => setTheme(theme =>! theme)
@@ -31,7 +32,8 @@ function App() {
           <Route exact path='/products/details/:id' component={productDetails}/>
           <Route exact path='/filter/:name' component={productFilter}/>
           <Route exact path='/categories' component={categories}/>
-          <Route exact path='/categories/:categories' component={phoneCategorie}/>
+          <Route exact path='/categories/:categories' component={categoriesFilter}/>
+          <Route exact='/phoneInput/:name' component={phoneInput}/>
         </Switch>
         <Footer/>
       </BrowserRouter>

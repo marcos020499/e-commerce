@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cart from'../Components/Cart';
+import Cart from'../Components/cart/Cart';
 
 export default class Cart1 extends Component{
 

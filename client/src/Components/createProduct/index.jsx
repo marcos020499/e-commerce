@@ -4,24 +4,43 @@ import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
 import { toast } from 'react-toastify';
 import FileUpload from '../upload/utils'
-import { Link, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
+import { Typography, Button, Form, Input } from 'antd';
+
+const { TextArea } = Input;
 toast.configure();
 class index extends Component {
-  constructor(props) {
-    super(props)
   
-    this.state = {
+    state = {
       _id: '',
       name: '',
-      image: '',
+      images: '',
       available_quantity: '',
       price: '',
       description: '',
       categories: '',
       isEditPage: false
     }
+    handleChangeName = (event) => {
+      this.setState({ name: event.currentTarget.value })
+    }
 
-  }
+    handleChangePrice = (event) => {
+      this.setState({ price: parseInt(event.currentTarget.value, 10) })
+    }
+
+    handleChangeDecsription = (event) => {
+      // console.log(event.currentTarget.value)
+      this.setState({ description: event.currentTarget.value })
+    }
+    handleChangeAvailable = (event) => {
+      // console.log(event.currentTarget.value)
+      this.setState({ available_quantity: event.currentTarget.value })
+    }
+
+    handleChangeCategories = (event) => {
+      this.setState({ categories: event.currentTarget.value })
+    }
   componentDidMount(){
     const id = this.props.match.params.id;
     if(!id) {
@@ -30,13 +49,15 @@ class index extends Component {
     this.setState({isEditPage: true})
     axios.get(`http://localhost:8080/api/productos/filtrar/${id}`)
       .then(res => {
-        const {_id, name, available_quantity, price, description } = res.data
+        const {_id, name, images, available_quantity, price, description, categories } = res.data
         this.setState({
           _id,
           name,
+          images,
           available_quantity,
           price,
           description,
+          categories,
         });
 
       })
@@ -47,8 +68,16 @@ class index extends Component {
   fetchData=event =>{
     event.preventDefault();
     const id = this.props.match.params.id;
-    const { name, available_quantity, price, description, isEditPage, categories} = this.state
-      axios.post(`http://localhost:8080/api/productos${isEditPage ? `/editar/${id}` : '/crear'}`, { name, available_quantity, price, description, isEditPage, categories}) 
+    const {isEditPage} = this.state
+    const variables = {
+      name: this.state.name,
+      description: this.state.description,
+      images: this.state.images,
+      categories: this.state.categories,
+      available_quantity: this.state.available_quantity,
+      price: this.state.price
+  }
+      axios.post(`http://localhost:8080/api/productos${isEditPage ? `/editar/${id}` : '/crear'}`, variables) 
       .then(() => {
           toast.success(`producto ${isEditPage ? "editado" : "creado"}`,{
             position: toast.POSITION.TOP_CENTER}
@@ -57,7 +86,6 @@ class index extends Component {
       })
       .catch(err => toast.warn(`No se pudo ${isEditPage ? "editar" : "crear"} el producto`))
   }
-
   updateFiles = (newImages) => {
     this.setState({ images: newImages })
   }
@@ -68,25 +96,53 @@ class index extends Component {
     });
   }
   render() {
-    const { name, available_quantity, price, description, isEditPage, categories } = this.state;
+    const {isEditPage} = this.state;
     return (
 
       <>
         <div className='productCreate'>
           <h2 style={{textAlign: 'center'}}>{isEditPage ? " Editar" : " Crear" } producto</h2>
-          <form onSubmit={this.fetchData} >
-            <input type="text"placeholder='Ingresa el nombre' value={name} name='name' onChange={this.onChange} required/>
-            <FileUpload refreshFunction={this.updateFiles} />
-            <input type="text"placeholder='Ingresa la cantidad' value={available_quantity} name='available_quantity' onChange={this.onChange} required/>
-            <input type="text"placeholder='Ingresa el precio ' value={price} name='price' onChange={this.onChange} required/>
-            <input type="text"placeholder='Ingresa una descripcion' value={description} name='description' onChange={this.onChange}/>
-            <input type="text"placeholder='Ingresa una categoria' value={categories} name='categories' onChange={this.onChange}/>
-            <div className='admin'>
-              <h3>Is admin?</h3>
-              <input className='checkbox1' type="checkbox"/>
-            </div>
-            <button type='submit' style={{alignItems: 'center'}}>Enviar</button>
-            </form>   
+          <Form onSubmit={this.fetchData}>
+               
+               <FileUpload refreshFunction={this.updateFiles} />
+
+                <br /><br />
+                <label>Name</label>
+                <Input
+                    onChange={this.handleChangeName}
+                    value={this.state.name}
+                />
+                <br /><br />
+                <label>available_quantity</label>
+                <TextArea
+                    onChange={this.handleChangeAvailable}
+                    value={this.state.available_quantity}
+                />
+                <br /><br />
+                <label>Price($)</label>
+                <Input
+                    type="number"
+                    onChange={this.handleChangePrice}
+                    value={this.state.price}
+                />
+                <br /><br />
+                <label>Description</label>
+                <Input
+                    onChange={this.handleChangeDecsription}
+                    value={this.state.description}
+                />
+                <br /><br />
+                <label>Categories</label>
+                <Input
+                    onChange={this.handleChangeCategories}
+                    value={this.state.categories}
+                />
+                <br /><br />
+
+                <Button type="primary" size="large" onClick={this.fetchData}>
+                    Submit
+                </Button>
+            </Form>  
         </div>          
       </>
     )
