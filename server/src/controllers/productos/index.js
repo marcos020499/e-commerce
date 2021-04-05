@@ -5,3 +5,5 @@ export * from './editar';
 export * from './filtrar';
 export * from './filtrar1';
 export * from './filtrar2';
+export * from './price0';
+export * from './price2000';

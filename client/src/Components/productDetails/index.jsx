@@ -39,7 +39,6 @@ class index extends Component {
         toast.warn("No se puede mostrar la información - " + err)
       })
   }
-
   render() {
     const { name, images, available_quantity, price, description} = this.state;
     return (

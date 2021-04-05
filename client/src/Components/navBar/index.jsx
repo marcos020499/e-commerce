@@ -78,7 +78,6 @@ class index extends Component {
           }
       });
   }
-
   register = event => {
     event.preventDefault();
     const {user, password, name, secondName, city} = this.state
@@ -114,7 +113,6 @@ class index extends Component {
         width: '10px'
       }
     }
-
     return (
       <div>
         <div className='navBox' >
@@ -195,8 +193,6 @@ class index extends Component {
   
   }
 }
-
-
 const mapStateToProps = state =>{
   return{
       numberCart:state._todoProduct.numberCart

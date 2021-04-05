@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './style.scss';
 import 'font-awesome/css/font-awesome.min.css';
 import { withRouter, Link } from 'react-router-dom';
-
 import {actFetchProductsRequest,AddCart} from '../../actions'
 import {connect} from 'react-redux';
 class index extends Component {
@@ -33,7 +32,6 @@ class index extends Component {
         }
         
     }
-
 
 const mapStateToProps = state =>{
     return {

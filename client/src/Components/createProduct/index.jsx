@@ -16,7 +16,7 @@ class index extends Component {
       name: '',
       images: '',
       available_quantity: '',
-      price: '',
+      price: 0,
       description: '',
       categories: '',
       isEditPage: false
@@ -98,7 +98,6 @@ class index extends Component {
   render() {
     const {isEditPage} = this.state;
     return (
-
       <>
         <div className='productCreate'>
           <h2 style={{textAlign: 'center'}}>{isEditPage ? " Editar" : " Crear" } producto</h2>
@@ -138,7 +137,6 @@ class index extends Component {
                     value={this.state.categories}
                 />
                 <br /><br />
-
                 <Button type="primary" size="large" onClick={this.fetchData}>
                     Submit
                 </Button>

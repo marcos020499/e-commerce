@@ -11,31 +11,23 @@ function UploadProductPage(props) {
     const [priceValue, setpriceValue] = useState('')
     const [descriptionValue, setdescriptionValue] = useState('')
 
-
-
-
     const onnameChange = (event) => {
         setnameValue(event.currentTarget.value)
     }
-
     const ondescriptionChange = (event) => {
         setdescriptionValue(event.currentTarget.value)
     }
-
     const onpriceChange = (event) => {
         setpriceValue(event.currentTarget.value)
     }
-
     const onavailable_quantityChange = (event) => {
         setavailable_quantityValue(event.currentTarget.value)
     }
-
     const updateImages = (newImages) => {
         setImages(newImages)
     }
     const onSubmit = (event) => {
         event.preventDefault();
-
 
         if (!nameValue || !descriptionValue || !priceValue ||
             !priceValue || !Images) {
@@ -49,7 +41,6 @@ function UploadProductPage(props) {
             price: priceValue,
             description: descriptionValue,
         }
-
         Axios.post('http://localhost:8080/api/productos/crear', variables)
             .then(response => {
                 if (response.data.success) {
@@ -61,7 +52,6 @@ function UploadProductPage(props) {
             })
 
     }
-
     return (
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -87,18 +77,14 @@ function UploadProductPage(props) {
                     value={priceValue}>
                     </input>
                 <label>description</label>
-                <input onChange={ondescriptionChange} value={descriptionValue}>
-                    
+                <input onChange={ondescriptionChange} value={descriptionValue}>    
                 </input>
-
                 <button
                     onClick={onSubmit}
                 >
                     Submit
                 </button>
-
             </form>
-
         </div>
     )
 }

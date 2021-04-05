@@ -13,8 +13,6 @@ function Cart({items,IncreaseQuantity,DecreaseQuantity,DeleteCart}){
     function TotalPrice(price,tonggia){
         return Number(price * tonggia).toLocaleString('en-US');
     }
-    
-    
     return(
         <div className="row">
             <div className="col-md-12">

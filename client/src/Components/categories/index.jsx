@@ -10,8 +10,6 @@ import phone from '../../Images/phones.jpg'
 import tv from '../../Images/tv samsung.png'
 toast.configure();
 class index extends Component {
-
-
   render() {
     return (
 

@@ -3,12 +3,14 @@ const router = express.Router();
 const { Product } = require("../models/products");
 const multer = require('multer');
 const crypto = require("crypto");
-import { crear , borrar, editar, filtrar, filtrar1, filtrar2} from '../controllers/productos';
+import { crear , borrar, editar, price0, price2000, filtrar, filtrar1, filtrar2} from '../controllers/productos';
 router.post('/crear', crear);
 router.delete('/listar/:id', borrar);
 router.post('/editar/:id', editar);
 router.get('/filtrar/:id', filtrar);
 router.get('/filtrar1/:name', filtrar1);
+router.get('/price0', price0);
+router.get('/price2000', price2000);
 router.get('/categories/:categories', filtrar2);
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
