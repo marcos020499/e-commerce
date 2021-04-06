@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { toast } from 'react-toastify';
 import FileUpload from '../upload/utils'
 import { withRouter} from 'react-router-dom';
-import { Typography, Button, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 const { TextArea } = Input;
 toast.configure();

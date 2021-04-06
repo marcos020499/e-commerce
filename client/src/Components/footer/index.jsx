@@ -5,7 +5,6 @@ import 'font-awesome/css/font-awesome.min.css';
 export default class index extends Component {
 
   render() {
-    const {  } = this.props;
     return (
       <>
         <div className='divFooter'>
