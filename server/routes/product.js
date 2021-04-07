@@ -1,33 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { Product } = require("../models/products");
+const { Product } = require("../models/Product");
 const multer = require('multer');
-const crypto = require("crypto");
-import { crear , borrar, editar, price0, price2000, filtrar, filtrar1, filtrar2} from '../controllers/productos';
-router.post('/crear', crear);
-router.delete('/listar/:id', borrar);
-router.post('/editar/:id', editar);
-router.get('/filtrar/:id', filtrar);
-router.get('/filtrar1/:name', filtrar1);
-router.get('/price0', price0);
-router.get('/price2000', price2000);
-router.get('/categories/:categories', filtrar2);
+
+const { auth } = require("../middleware/auth");
+
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/')
     },
-    filename: function (req, file, cb) {
-        try {
-            crypto.pseudoRandomBytes(16, function (err, raw) {
-                if (err) return cb(err);
-                cb(
-                    null,
-                    raw.toString("hex")+Date.now()+file.originalname
-                );
-            });
-        } catch (error) {
-            console.log(error);
-        }
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}_${file.originalname}`)
     },
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname)
@@ -40,7 +23,12 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single("file")
 
-router.post("/upload",  (req, res) => {
+
+//=================================
+//             Product
+//=================================
+
+router.post("/uploadImage", auth, (req, res) => {
 
     upload(req, res, err => {
         if (err) {
@@ -52,19 +40,20 @@ router.post("/upload",  (req, res) => {
 });
 
 
-router.post("/crear", (req, res) => {
+router.post("/uploadProduct", auth, (req, res) => {
 
     //save all the data we got from the client into the DB 
     const product = new Product(req.body)
-    const product1 = product.toLowerCase();
-    product1.save((err) => {
+
+    product.save((err) => {
         if (err) return res.status(400).json({ success: false, err })
         return res.status(200).json({ success: true })
     })
 
 });
 
-router.get("/listar", (req, res) => {
+
+router.post("/getProducts", (req, res) => {
 
     let order = req.body.order ? req.body.order : "desc";
     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
@@ -115,6 +104,9 @@ router.get("/listar", (req, res) => {
 
 });
 
+
+//?id=${productId}&type=single
+//id=12121212,121212,1212121   type=array 
 router.get("/products_by_id", (req, res) => {
     let type = req.query.type
     let productIds = req.query.id
@@ -131,6 +123,8 @@ router.get("/products_by_id", (req, res) => {
 
     console.log("productIds", productIds)
 
+
+    //we need to find the product information that belong to product Id 
     Product.find({ '_id': { $in: productIds } })
         .populate('writer')
         .exec((err, product) => {
