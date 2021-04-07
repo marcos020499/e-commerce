@@ -1,4 +1,4 @@
 export const config = {
     PORT: 8080,
-    DB_URI: 'mongodb://localhost:27017/comerce1',
+    DB_URI: 'mongodb+srv://jaewon:1234567abcd@cluster0-e7emq.mongodb.net/test?retryWrites=true&w=majority',
   };

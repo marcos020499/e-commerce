@@ -6,13 +6,12 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 import { config } from './src/config/constants';
 import { DBConnection } from './src/config/DBConnection';
-
+const config = require("./src/configDB/key");
 const mongoose = require("mongoose");
-DBConnection()
-  .then(() => console.log('DB Connected'))
-  .catch((err) => {
-    throw new Error('No se puede conectar a la DB', err);
-  });
+const mongoose = require("mongoose");
+const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
   app.use(cors())
   app.use(bodyParser.urlencoded({ extended: true }));
