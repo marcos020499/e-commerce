@@ -52,7 +52,7 @@ class index extends Component {
           <div key={data.id} className='containerProduct'>
             <h4>name: {data.name}</h4>
             <div className='imgProductLogin'>
-              <img  src={`http://localhost:8080/${data.images}`}/>
+              <img  src={`http://localhost:8080/${data.images}`} alt='login'/>
             </div>
             
             <h4>available_quantity: {data.available_quantity}</h4>

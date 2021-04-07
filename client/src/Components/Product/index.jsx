@@ -22,7 +22,7 @@ class index extends Component {
                         <h4>name: {item.name}</h4>
                         <h5>available quantity: {item.available_quantity}</h5>
                         <h5>price: {item.price}</h5>
-                        <a className='fa fa-cart-plus' style={{cursor:'pointer'}} onClick={()=>this.props.AddCart(item)}></a>
+                        <a className='fa fa-cart-plus' style={{cursor:'pointer', display: 'none'}} onClick={()=>this.props.AddCart(item)}></a>
                         <Link to={'/products/details/'+item._id} className='moreInfo' style={{color: 'rgb(157, 8, 152)', position: 'relative', right: '-14%', fontSize: '2vw'}}>More info</Link>
                         </div>
                     ))

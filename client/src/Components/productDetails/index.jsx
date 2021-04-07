@@ -48,7 +48,7 @@ class index extends Component {
         <div className='productDetails'>
           <Link to={'/'} className="fa fa-reply" style={{position: 'relative', right: '-85%', top: '-3%'}}></Link>
           <h3>Nombre: {name}</h3>
-          <img  src={`http://localhost:8080/${images}`} style={{position: 'relative', right: '-28%', top: '10%'}}/>
+          <img  src={`http://localhost:8080/${images}`} style={{position: 'relative', right: '-28%', top: '10%'}} alt='productDetails'/>
           <h3>Available_quantity: {available_quantity}</h3>
           <h3>Price: {price}</h3>
           <p>Description: {description}</p>
