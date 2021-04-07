@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "description": "hola mundo",
   "main": "index.js",
+  "engine": {
+    "node": "14.15.4",
+    "npm": "7.7.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node index.js",
-    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
+    "backend": "nodemon server/index.js",
+    "frontend": "npm run front --prefix client",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
