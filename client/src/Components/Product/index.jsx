@@ -3,7 +3,7 @@ import './style.scss';
 import 'font-awesome/css/font-awesome.min.css';
 import axios from 'axios';
 import { withRouter, Link } from 'react-router-dom';
-import {actFetchProductsRequest,AddCart} from '../../actions'
+import {AddCart} from '../../actions'
 import {connect} from 'react-redux';
 class index extends Component {
     constructor(props) {
