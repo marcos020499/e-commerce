@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import FileUpload from './utils'
 import Axios from 'axios';
 
-
 function UploadProductPage(props) {
-
     const [nameValue, setnameValue] = useState('')
     const [Images, setImages] = useState([])
     const [available_quantityValue, setavailable_quantityValue] = useState('')
@@ -41,7 +39,7 @@ function UploadProductPage(props) {
             price: priceValue,
             description: descriptionValue,
         }
-        Axios.post('http://localhost:8080/api/productos/crear', variables)
+        Axios.post('/api/productos/crear', variables)
             .then(response => {
                 if (response.data.success) {
                     alert('Product Successfully Uploaded')
@@ -58,9 +56,7 @@ function UploadProductPage(props) {
                 <h1 level={2}> Upload Travel Product</h1>
             </div>
             <form onSubmit={onSubmit} >
-
                 <FileUpload refreshFunction={updateImages} />
-
                 <label>name</label>
                 <input
                     onChange={onnameChange}

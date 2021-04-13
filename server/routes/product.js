@@ -2,15 +2,70 @@ const express = require('express');
 const router = express.Router();
 const { Product } = require("../models/Product");
 const multer = require('multer');
-
-const { auth } = require("../middleware/auth");
-
+const crypto = require("crypto");
+router.post('/crear', async(req, res) => {
+    const products = new Product(req.body);
+    const db = await products.save();
+    res.status(201).json(db);
+});
+router.delete('/listar/:id', async(req, res) => {
+    const products = await Product.findByIdAndRemove(req.params.id
+        );
+        res.status(200).json(products);
+});
+router.post('/editar/:id', async(req, res) => {
+    const products = await Product.findByIdAndUpdate(req.params.id, {
+        $set: req.body
+      });
+    const db = await products.save();
+    res.status(201).json(db);
+});
+router.get('/filtrar/:id', async(req, res) => {
+    const products = await Product.findById(
+        req.params.id
+      );
+      res.status(200).json(products);
+});
+router.get('/filtrar1/:name', async(req, res) => {
+    const products = await Product.find(
+        req.params
+      );
+      res.status(200).json(products);
+});
+router.get('/price0', async(req, res) => {
+    const products = await Product.find(
+        {'price': {$gt : 0, $lt: 2000 }}
+      );
+      res.status(200).json(products);
+});
+router.get('/price2000', async(req, res) => {
+    const products = await Product.find(
+        {'price': {$gt : 2000 }}
+      );
+      res.status(200).json(products);
+});
+router.get('/categories/:categories', async(req, res) => {
+    const products = await Product.find(
+        req.params
+      );
+      res.status(200).json(products);
+});
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/')
     },
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}_${file.originalname}`)
+    filename: function (req, file, cb) {
+        try {
+            crypto.pseudoRandomBytes(16, function (err, raw) {
+                if (err) return cb(err);
+                cb(
+                    null,
+                    raw.toString("hex")+Date.now()+file.originalname
+                );
+            });
+        } catch (error) {
+            console.log(error);
+        }
     },
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname)
@@ -23,13 +78,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single("file")
 
-
-//=================================
-//             Product
-//=================================
-
-router.post("/uploadImage", auth, (req, res) => {
-
+router.post("/upload",  (req, res) => {
     upload(req, res, err => {
         if (err) {
             return res.json({ success: false, err })
@@ -38,22 +87,15 @@ router.post("/uploadImage", auth, (req, res) => {
     })
 
 });
-
-
-router.post("/uploadProduct", auth, (req, res) => {
-
-    //save all the data we got from the client into the DB 
+router.post("/crear", (req, res) => {
     const product = new Product(req.body)
-
-    product.save((err) => {
+    const product1 = product.toLowerCase();
+    product1.save((err) => {
         if (err) return res.status(400).json({ success: false, err })
         return res.status(200).json({ success: true })
     })
-
 });
-
-
-router.post("/getProducts", (req, res) => {
+router.get("/listar", (req, res) => {
 
     let order = req.body.order ? req.body.order : "desc";
     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
@@ -76,9 +118,6 @@ router.post("/getProducts", (req, res) => {
             }
         }
     }
-
-    console.log(findArgs)
-
     if (term) {
         Product.find(findArgs)
             .find({ $text: { $search: term } })
@@ -104,9 +143,6 @@ router.post("/getProducts", (req, res) => {
 
 });
 
-
-//?id=${productId}&type=single
-//id=12121212,121212,1212121   type=array 
 router.get("/products_by_id", (req, res) => {
     let type = req.query.type
     let productIds = req.query.id
@@ -120,11 +156,6 @@ router.get("/products_by_id", (req, res) => {
             return item
         })
     }
-
-    console.log("productIds", productIds)
-
-
-    //we need to find the product information that belong to product Id 
     Product.find({ '_id': { $in: productIds } })
         .populate('writer')
         .exec((err, product) => {
@@ -132,7 +163,5 @@ router.get("/products_by_id", (req, res) => {
             return res.status(200).send(product)
         })
 });
-
-
 
 module.exports = router;

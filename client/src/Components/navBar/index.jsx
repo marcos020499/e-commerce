@@ -65,7 +65,7 @@ class index extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { user, password } = this.state;
-    axios.post('http://localhost:8080/api/usuarios/login', { user, password })
+    axios.post('/api/usuarios/login', { user, password })
        .then(() => {
         toast.success('credenciales validas',{
             position: toast.POSITION.TOP_CENTER}
@@ -81,7 +81,7 @@ class index extends Component {
   register = event => {
     event.preventDefault();
     const {user, password, name, secondName, city} = this.state
-    axios.post(`http://localhost:8080/api/usuarios/crear`, {user, password, name, secondName, city})
+    axios.post(`/api/usuarios/crear`, {user, password, name, secondName, city})
       .then(() => {
         toast.success(`usuario creado`,{
           position: toast.POSITION.TOP_CENTER}
@@ -117,7 +117,7 @@ class index extends Component {
       <div>
         <div className='navBox' >
           <span onClick={this.openModal} className='iconBar'><i className='fa fa-bars'></i></span>
-          <h1 style={{position: 'relative', top: '-40%'}}>My shop</h1> 
+          <h1 style={{position: 'relative', top: '-20%', fontSize: '2.8vw'}}>My shop</h1> 
           <a className='fa fa-search principal' onClick={this.openModal3}></a>
           <Link to="/cart" className="fa fa-shopping-cart">{this.props.numberCart}</Link>
           <a className='fa fa-user' onClick={this.openModal2}></a>               
@@ -148,7 +148,6 @@ class index extends Component {
                     <input type="password"placeholder='Ingresa tu contraseña' value={password} name='password' onChange={this.onChange} required/>
                     <h3>No tienes una cuenta? <button className='newUser' onClick={this.openModal1}>Registrate</button></h3>
                     <button type='submit'>Iniciar sesion</button>
-                    <Link to="/phoneInput/mm" className="LoginReference">Olvidaste tu contraseña </Link>
                   </div>
                 </div>
               </Modal>
@@ -190,7 +189,6 @@ class index extends Component {
             </div>
       </div>
     )
-  
   }
 }
 const mapStateToProps = state =>{

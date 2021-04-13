@@ -1,28 +1,43 @@
 import React, { Component } from 'react'
 import './style.scss';
 import 'font-awesome/css/font-awesome.min.css';
+import axios from 'axios';
 import { withRouter, Link } from 'react-router-dom';
 import {actFetchProductsRequest,AddCart} from '../../actions'
 import {connect} from 'react-redux';
 class index extends Component {
-    componentDidMount(){
-        this.props.actFetchProductsRequest();
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
     }
-    
+    componentDidMount(){
+        this.fetchData();
+      }
+      fetchData() {
+          axios.get('/api/productos/listar') 
+          .then(response => {
+            this.setState({
+              data: response.data.products
+            })
+          })
+          .catch(err => console.log(err))
+      }
     render() {
-        const {_products} = this.props._products;
+        const {data} = this.state;
            return (
                 <div className="row">
                 {
-                    _products.map((item,index)=>(
+                    data.map((item,index)=>(
                     <div key={index} className="containerProduct" >
                         <div className='imgProduct'>
-                            <img  src={`http://localhost:8080/`+item.images} alt='hello'/>
+                            <img  src={`/`+item.images} alt='hello'/>
                         </div>
                         <h4>name: {item.name}</h4>
                         <h5>available quantity: {item.available_quantity}</h5>
                         <h5>price: {item.price}</h5>
-                        <a className='fa fa-cart-plus' style={{cursor:'pointer', display: 'none'}} onClick={()=>this.props.AddCart(item)}></a>
+                        <a className='fa fa-cart-plus' style={{cursor:'pointer'}} onClick={()=>this.props.AddCart(item)}></a>
                         <Link to={'/products/details/'+item._id} className='moreInfo' style={{color: 'rgb(157, 8, 152)', position: 'relative', right: '-14%', fontSize: '2vw'}}>More info</Link>
                         </div>
                     ))
@@ -30,20 +45,13 @@ class index extends Component {
                 </div>
             ) 
         }
-        
     }
 
-const mapStateToProps = state =>{
-    return {
-         _products: state._todoProduct,
-       };
-}
 function mapDispatchToProps(dispatch){
     return{
-        actFetchProductsRequest:()=>dispatch(actFetchProductsRequest()),
         AddCart:item=>dispatch(AddCart(item))
      
     }
 }
 export default 
-  withRouter(connect(mapStateToProps,mapDispatchToProps)(index))
+  withRouter(connect(null,mapDispatchToProps)(index))

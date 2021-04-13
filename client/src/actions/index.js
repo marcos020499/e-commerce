@@ -16,16 +16,12 @@ export const actFetchProductsRequest = () => {
         });
     }
 }
-
-/*GET_ALL_PRODUCT*/
 export function GetAllProduct(payload){
     return{
         type:'GET_ALL_PRODUCT',
         payload
     }
 }
-
-/*GET NUMBER CART*/
 export function GetNumberCart(){
     return{
         type:'GET_NUMBER_CART',
@@ -50,7 +46,6 @@ export function DeleteCart(payload){
         payload
     }
 }
-
 export function IncreaseQuantity(payload){
     return{
         type:'INCREASE_QUANTITY',

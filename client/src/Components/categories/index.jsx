@@ -12,36 +12,33 @@ toast.configure();
 class index extends Component {
   render() {
     return (
-
       <div className='categories'>   
         <h1>CATEGORIES</h1>
         <div className='productContainer1'>
           <a  href='/categories/phone'>
-            <img  src={phone} alt='phone'/>
+            <img  src={phone} alt = ''phone/>
             <h4>Phones</h4>
           </a>
         </div>
         <div className='productContainer1'>
           <a  href='/categories/computer' className='productContainer'>
-            <img  src={computer} alt = 'computer'/>
+            <img  src={computer} alt= 'computer'/>
             <h4>Computer</h4>
           </a>
         </div>
         <div className='productContainer1'>
           <a  href='/categories/tv' className='productContainer'>
-            <img  src={tv} alt='tv'/>
+            <img  src={tv} alt = 'tv'/>
             <h4>Tv</h4>
           </a>
         </div>
       </div>
     )
-  
   }
 }
 function mapDispatchToProps(dispatch){
   return{
       AddCart:item=>dispatch(AddCart(item))
-   
   }
 }
 export default 

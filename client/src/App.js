@@ -20,21 +20,21 @@ function App() {
     <Provider store={Store}>
       <div className={theme?'buttonTrue' : 'buttonFalse'}>
         <span href='/' className='iconChange'><i className='fa fa-adjust' onClick={change}></i></span>
-      <BrowserRouter>
-        <NavBar/>
-        <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={Login}/>
-          <Route exact path='/cart' component={Cart}/>
-          <Route exact path='/products/create' component={createProduct}/>
-          <Route exact path='/products/editar/:id' component={createProduct}/>
-          <Route exact path='/products/details/:id' component={productDetails}/>
-          <Route exact path='/filter/:name' component={productFilter}/>
-          <Route exact path='/categories' component={categories}/>
-          <Route exact path='/categories/:categories' component={categoriesFilter}/>
-        </Switch>
-        <Footer/>
-      </BrowserRouter>
+        <BrowserRouter>
+          <NavBar/>
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/cart' component={Cart}/>
+            <Route exact path='/products/create' component={createProduct}/>
+            <Route exact path='/products/editar/:id' component={createProduct}/>
+            <Route exact path='/products/details/:id' component={productDetails}/>
+            <Route exact path='/filter/:name' component={productFilter}/>
+            <Route exact path='/categories' component={categories}/>
+            <Route exact path='/categories/:categories' component={categoriesFilter}/>
+          </Switch>
+          <Footer/>
+        </BrowserRouter>
       </div>
     </Provider>
   );

@@ -1,26 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.d9823079.chunk.css",
-    "main.js": "/static/js/main.93a60b2d.chunk.js",
-    "main.js.map": "/static/js/main.93a60b2d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.0da83968.js",
-    "runtime-main.js.map": "/static/js/runtime-main.0da83968.js.map",
-    "static/css/2.28944d96.chunk.css": "/static/css/2.28944d96.chunk.css",
-    "static/js/2.6b49fd47.chunk.js": "/static/js/2.6b49fd47.chunk.js",
-    "static/js/2.6b49fd47.chunk.js.map": "/static/js/2.6b49fd47.chunk.js.map",
+    "main.css": "/static/css/main.a2c6d8c2.chunk.css",
+    "main.js": "/static/js/main.17028537.chunk.js",
+    "main.js.map": "/static/js/main.17028537.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.2d15070a.chunk.css": "/static/css/2.2d15070a.chunk.css",
+    "static/js/2.d8909682.chunk.js": "/static/js/2.d8909682.chunk.js",
+    "static/js/2.d8909682.chunk.js.map": "/static/js/2.d8909682.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.28944d96.chunk.css.map": "/static/css/2.28944d96.chunk.css.map",
-    "static/css/main.d9823079.chunk.css.map": "/static/css/main.d9823079.chunk.css.map",
-    "static/js/2.6b49fd47.chunk.js.LICENSE.txt": "/static/js/2.6b49fd47.chunk.js.LICENSE.txt",
-    "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.f691f37e.woff",
-    "static/media/bootstrap.css": "/static/media/glyphicons-halflings-regular.be810be3.woff2",
-    "static/media/wallpaper.b261c15b.jpg": "/static/media/wallpaper.b261c15b.jpg"
-  },
-  "entrypoints": [
-    "static/js/runtime-main.0da83968.js",
-    "static/css/2.28944d96.chunk.css",
-    "static/js/2.6b49fd47.chunk.js",
-    "static/css/main.d9823079.chunk.css",
-    "static/js/main.93a60b2d.chunk.js"
-  ]
+    "precache-manifest.6bb6edb7036a0f1659f3df084575a243.js": "/precache-manifest.6bb6edb7036a0f1659f3df084575a243.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.2d15070a.chunk.css.map": "/static/css/2.2d15070a.chunk.css.map",
+    "static/css/main.a2c6d8c2.chunk.css.map": "/static/css/main.a2c6d8c2.chunk.css.map",
+    "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/wallpaper.jpg": "/static/media/wallpaper.2846123c.jpg"
+  }
 }

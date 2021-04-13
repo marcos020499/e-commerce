@@ -24,20 +24,15 @@ class index extends Component {
     handleChangeName = (event) => {
       this.setState({ name: event.currentTarget.value })
     }
-
     handleChangePrice = (event) => {
       this.setState({ price: parseInt(event.currentTarget.value, 10) })
     }
-
     handleChangeDecsription = (event) => {
-      // console.log(event.currentTarget.value)
       this.setState({ description: event.currentTarget.value })
     }
     handleChangeAvailable = (event) => {
-      // console.log(event.currentTarget.value)
       this.setState({ available_quantity: event.currentTarget.value })
     }
-
     handleChangeCategories = (event) => {
       this.setState({ categories: event.currentTarget.value })
     }
@@ -47,7 +42,7 @@ class index extends Component {
       return;
     }
     this.setState({isEditPage: true})
-    axios.get(`http://localhost:8080/api/productos/filtrar/${id}`)
+    axios.get(`/api/productos/filtrar/${id}`)
       .then(res => {
         const {_id, name, images, available_quantity, price, description, categories } = res.data
         this.setState({
@@ -59,7 +54,6 @@ class index extends Component {
           description,
           categories,
         });
-
       })
       .catch(err => {
         toast.warn("No se puede mostrar la información - " + err)
@@ -77,7 +71,7 @@ class index extends Component {
       available_quantity: this.state.available_quantity,
       price: this.state.price
   }
-      axios.post(`http://localhost:8080/api/productos${isEditPage ? `/editar/${id}` : '/crear'}`, variables) 
+      axios.post(`/api/productos${isEditPage ? `/editar/${id}` : '/crear'}`, variables) 
       .then(() => {
           toast.success(`producto ${isEditPage ? "editado" : "creado"}`,{
             position: toast.POSITION.TOP_CENTER}
@@ -102,9 +96,7 @@ class index extends Component {
         <div className='productCreate'>
           <h2 style={{textAlign: 'center'}}>{isEditPage ? " Editar" : " Crear" } producto</h2>
           <Form onSubmit={this.fetchData}>
-               
                <FileUpload refreshFunction={this.updateFiles} />
-
                 <br /><br />
                 <label>Name</label>
                 <Input
@@ -144,7 +136,6 @@ class index extends Component {
         </div>          
       </>
     )
-  
   }
 }
 export default withRouter(index);

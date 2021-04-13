@@ -3,7 +3,6 @@ import './style.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
 export default class index extends Component {
-
   render() {
     return (
       <>
@@ -39,7 +38,7 @@ export default class index extends Component {
             <input className='input' type="text" placeholder='Enter your email...'/>
           </div>
           </div>
-          <h1 className='text8'>© 2021 All Rights Reserved | Design by W3layouts</h1>
+          <h1 className='text8'>© 2021 All Rights Reserved | Design by Marcos Manzo</h1>
         </div>
       </>
     )

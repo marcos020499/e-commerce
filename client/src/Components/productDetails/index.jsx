@@ -8,7 +8,6 @@ toast.configure();
 class index extends Component {
   constructor(props) {
     super(props)
-  
     this.state = {
       data: [],
       _id: '',
@@ -18,11 +17,10 @@ class index extends Component {
       price: '',
       description: '',
     }
-
   }
   componentDidMount(){
     const id = this.props.match.params.id;
-    axios.get(`http://localhost:8080/api/productos/filtrar/${id}`)
+    axios.get(`/api/productos/filtrar/${id}`)
       .then(res => {
         const {_id, name, images, available_quantity, price, description } = res.data
         this.setState({
@@ -44,18 +42,19 @@ class index extends Component {
     return (
 
       <>
-        <h2>Detalles del producto</h2>
+        <h2 className='title'>Detalles del producto</h2>
         <div className='productDetails'>
-          <Link to={'/'} className="fa fa-reply" style={{position: 'relative', right: '-85%', top: '-3%'}}></Link>
-          <h3>Nombre: {name}</h3>
-          <img  src={`http://localhost:8080/${images}`} style={{position: 'relative', right: '-28%', top: '10%'}} alt='productDetails'/>
-          <h3>Available_quantity: {available_quantity}</h3>
-          <h3>Price: {price}</h3>
-          <p>Description: {description}</p>
+          <Link to={'/'} className="fa fa-reply" style={{position: 'relative', right: '-85%', top: '-30%', color: 'purple'}}></Link>
+          <div className='productDetailsText'>
+            <h3>Nombre: {name}</h3>
+            <img  src={`/${images}`} style={{position: 'relative', right: '-38%', top: '10%', width: '20%'}} alt=''/>
+            <h3>Available_quantity: {available_quantity}</h3>
+            <h3>Price: {price}</h3>
+            <p>Description: {description}</p>
+          </div>
         </div>          
       </>
     )
-  
   }
 }
 export default withRouter(index);

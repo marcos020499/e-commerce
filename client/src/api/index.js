@@ -1,6 +1,6 @@
 import axios from 'axios';
 //mock API
-let API_URL = 'http://localhost:8080/api/productos/listar';
+let API_URL = '/api/productos/listar';
    export default function callApi(endpoint, method = 'GET', body) {
        return axios({
            method,

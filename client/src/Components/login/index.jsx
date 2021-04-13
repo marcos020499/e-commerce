@@ -19,7 +19,7 @@ class index extends Component {
     this.fetchData();
   }
   fetchData() {
-      axios.get('http://localhost:8080/api/productos/listar') 
+      axios.get('/api/productos/listar') 
       .then(response => {
         this.setState({
           data: response.data.products
@@ -28,7 +28,7 @@ class index extends Component {
       .catch(err => console.log(err))
   }
   handleRemove = _id => {
-    const url1 = `http://localhost:8080/api/productos/listar/`+_id;
+    const url1 = `/api/productos/listar/`+_id;
     axios
       .delete(url1)
       .then(response => {
@@ -43,7 +43,6 @@ class index extends Component {
   };
   render() {
     const { data} = this.state;
-    //const { _session} = this.props._session;
     return (
       <div>
         <Link to={'/products/create'}><button className='buttonCreate'>Crear Producto</button></Link>
@@ -52,9 +51,8 @@ class index extends Component {
           <div key={data.id} className='containerProduct'>
             <h4>name: {data.name}</h4>
             <div className='imgProductLogin'>
-              <img  src={`http://localhost:8080/${data.images}`} alt='login'/>
-            </div>
-            
+              <img  src={`/${data.images}`} alt=''/>
+            </div> 
             <h4>available_quantity: {data.available_quantity}</h4>
             <h4>price: {data.price}</h4>
             <Link to={'/products/editar/'+data._id} className="fa fa-edit" style={{position: 'relative', right: '-75%'}}></Link>
@@ -64,7 +62,6 @@ class index extends Component {
         </div>
       </div>
     )
-  
   }
 }
 const mapStateToProps = state =>{

@@ -10,7 +10,6 @@ toast.configure();
 class index extends Component {
   constructor(props) {
     super(props)
-  
     this.state = {
       data: [],
       _id: '',
@@ -21,11 +20,10 @@ class index extends Component {
       description: '',
       categories: '',
     }
-
   }
   componentDidMount(){
     const categories = this.props.match.params.categories;
-    axios.get(`http://localhost:8080/api/productos/categories/${categories}`)
+    axios.get(`/api/productos/categories/${categories}`)
       .then(res => {
         this.setState({
           data: res.data
@@ -38,13 +36,12 @@ class index extends Component {
   render() {
     const { data} = this.state;
     return (
-
       <>   
         {data.map((item) =>( 
           <div key={item.id} className='containerProduct'>
             <h4> name: {item.name}</h4>
             <div className='imgProductLogin'>
-              <img  src={`http://localhost:8080/${item.images}`} alt=' '/>
+              <img  src={`/${item.images}`} alt='filter'/>
             </div>
             <h4>available_quantity: {item.available_quantity}</h4>
             <h4>price: {item.price}</h4>

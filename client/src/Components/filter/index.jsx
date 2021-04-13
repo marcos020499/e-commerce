@@ -10,7 +10,6 @@ toast.configure();
 class index extends Component {
   constructor(props) {
     super(props)
-  
     this.state = {
       data: [],
       _id: '',
@@ -20,11 +19,10 @@ class index extends Component {
       price: '',
       description: '',
     }
-
   }
   componentDidMount(){
     const name = this.props.match.params.name;
-    axios.get(`http://localhost:8080/api/productos/filtrar1/${name}`)
+    axios.get(`/api/productos/filtrar1/${name}`)
       .then(res => {
         this.setState({
           data: res.data
@@ -42,7 +40,7 @@ class index extends Component {
           <div key={item.id} className='containerProduct'>
             <h4> name: {item.name}</h4>
             <div className='imgProductLogin'>
-              <img  src={`http://localhost:8080/${item.images}`} alt=' '/>
+              <img  src={`/${item.images}`} alt=''/>
             </div>
             <h4>available_quantity: {item.available_quantity}</h4>
             <h4>price: {item.price}</h4>
@@ -58,7 +56,6 @@ class index extends Component {
 function mapDispatchToProps(dispatch){
   return{
       AddCart:item=>dispatch(AddCart(item))
-   
   }
 }
 export default 
